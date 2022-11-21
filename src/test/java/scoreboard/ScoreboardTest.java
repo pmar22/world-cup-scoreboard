@@ -2,20 +2,21 @@ package scoreboard;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ScoreboardTest {
 
+    public static final String HOME_TEAM = "England";
+    public static final String AWAY_TEAM = "Spain";
+
     @Test
     void whenStartGameThenReturnGame() {
-        var homeTeam = "England";
-        var awayTeam = "Spain";
         var scoreboard = new Scoreboard();
 
-        var game = scoreboard.startGame(homeTeam, awayTeam);
+        var game = scoreboard.startGame(HOME_TEAM, AWAY_TEAM);
 
-        assertEquals(homeTeam, game.getHomeTeam());
-        assertEquals(awayTeam, game.getAwayTeam());
+        assertEquals(HOME_TEAM, game.getHomeTeam());
+        assertEquals(AWAY_TEAM, game.getAwayTeam());
     }
 
 }
