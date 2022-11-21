@@ -1,5 +1,8 @@
 package scoreboard;
 
+import scoreboard.model.Game;
+import scoreboard.model.Score;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

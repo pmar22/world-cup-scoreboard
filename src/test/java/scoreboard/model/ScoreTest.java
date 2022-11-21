@@ -1,4 +1,4 @@
-package scoreboard;
+package scoreboard.model;
 
 import org.junit.jupiter.api.Test;
 

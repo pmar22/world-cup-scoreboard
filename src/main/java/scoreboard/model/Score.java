@@ -1,4 +1,4 @@
-package scoreboard;
+package scoreboard.model;
 
 public class Score {
     private final int home;
