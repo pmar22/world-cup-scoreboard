@@ -1,30 +1,40 @@
 package scoreboard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Scoreboard {
-    private final List<Game> finishedGames = new ArrayList<>();
+    private final List<Game> ongoingGames;
+
+    public Scoreboard() {
+        this.ongoingGames = new ArrayList<>();
+    }
 
     public Game startGame(String homeTeam, String awayTeam) {
-        return new Game(homeTeam, awayTeam);
+        var game = new Game(homeTeam, awayTeam);
+        ongoingGames.add(game);
+        return game;
     }
 
     public Game updateScore(Game game, Score score) {
-        if (finishedGames.contains(game)) {
-            throw new IllegalStateException("Game has been already finished");
+        if (!ongoingGames.contains(game)) {
+            throw new IllegalStateException("Game is not in progress now");
         }
-        return new Game(game.getHomeTeam(), game.getAwayTeam(), score);
+        var updatedGame = new Game(game.getHomeTeam(), game.getAwayTeam(), score);
+        ongoingGames.remove(game);
+        ongoingGames.add(updatedGame);
+        return updatedGame;
     }
 
     public void finishGame(Game game) {
-        if (finishedGames.contains(game)) {
-            throw new IllegalStateException("Game has been already finished");
+        if (!ongoingGames.contains(game)) {
+            throw new IllegalStateException("Game is not in progress now");
         }
-        finishedGames.add(game);
+        ongoingGames.remove(game);
     }
 
     public List<Game> getSummary() {
-        return new ArrayList<>();
+        return Collections.unmodifiableList(ongoingGames);
     }
 }
