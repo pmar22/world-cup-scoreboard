@@ -1,19 +1,19 @@
 package scoreboard;
 
 public class Score {
-    private final int homeTeamGoals;
-    private final int awayTeamGoals;
+    private final int home;
+    private final int away;
 
-    public Score(int homeTeamGoals, int awayTeamGoals) {
-        this.homeTeamGoals = homeTeamGoals;
-        this.awayTeamGoals = awayTeamGoals;
+    public Score(int home, int away) {
+        this.home = home;
+        this.away = away;
     }
 
-    public int getHomeTeamGoals() {
-        return homeTeamGoals;
+    public int getHome() {
+        return home;
     }
 
-    public int getAwayTeamGoals() {
-        return awayTeamGoals;
+    public int getAway() {
+        return away;
     }
 }

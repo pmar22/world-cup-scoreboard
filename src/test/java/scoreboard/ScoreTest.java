@@ -13,7 +13,7 @@ class ScoreTest {
 
         var score = new Score(homeTeamGoals, awayTeamGoals);
 
-        assertEquals(homeTeamGoals, score.getHomeTeamGoals());
-        assertEquals(awayTeamGoals, score.getAwayTeamGoals());
+        assertEquals(homeTeamGoals, score.getHome());
+        assertEquals(awayTeamGoals, score.getAway());
     }
 }

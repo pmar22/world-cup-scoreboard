@@ -1,6 +1,5 @@
 package scoreboard;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,8 +33,8 @@ class ScoreboardTest {
         var updatedGame = scoreboard.updateScore(game, score);
 
         var updatedScore = updatedGame.getScore();
-        assertEquals(homeTeamGoals, updatedScore.getHomeTeamGoals());
-        assertEquals(awayTeamGoals, updatedScore.getAwayTeamGoals());
+        assertEquals(homeTeamGoals, updatedScore.getHome());
+        assertEquals(awayTeamGoals, updatedScore.getAway());
         assertEquals(HOME_TEAM, updatedGame.getHomeTeam());
         assertEquals(AWAY_TEAM, updatedGame.getAwayTeam());
     }
@@ -53,8 +52,8 @@ class ScoreboardTest {
     @Test
     void whenFinishAlreadyFinishedGameThenThrowException() {
         var game = scoreboard.startGame(HOME_TEAM, AWAY_TEAM);
-
         scoreboard.finishGame(game);
+
         assertThrows(IllegalStateException.class, () -> scoreboard.finishGame(game));
     }
 

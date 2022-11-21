@@ -21,7 +21,7 @@ class GameTest {
         var game = new Game(homeTeam, awayTeam);
 
         var score = game.getScore();
-        assertEquals(0, score.getHomeTeamGoals());
-        assertEquals(0, score.getAwayTeamGoals());
+        assertEquals(0, score.getHome());
+        assertEquals(0, score.getAway());
     }
 }
