@@ -2,7 +2,7 @@ package scoreboard;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameTest {
     private final String homeTeam = "Poland";
@@ -20,7 +20,8 @@ class GameTest {
     void whenNewGameThenCreateWithInitialScore() {
         var game = new Game(homeTeam, awayTeam);
 
-        assertEquals(0, game.getHomeTeamGoals());
-        assertEquals(0, game.getAwayTeamGoals());
+        var score = game.getScore();
+        assertEquals(0, score.getHomeTeamGoals());
+        assertEquals(0, score.getAwayTeamGoals());
     }
 }

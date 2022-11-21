@@ -5,4 +5,7 @@ public class Scoreboard {
         return new Game(homeTeam, awayTeam);
     }
 
+    public Game updateScore(Game game, Score score) {
+        return new Game(game.getHomeTeam(), game.getAwayTeam(), score);
+    }
 }
