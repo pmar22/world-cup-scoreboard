@@ -3,6 +3,8 @@ package scoreboard.model;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -29,7 +31,12 @@ class GameTest {
 
     @Test
     void whenNewGameWithNullScoreThenThrowException() {
-        assertThrows(NullPointerException.class, () -> new Game(homeTeam, awayTeam, null));
+        assertThrows(NullPointerException.class, () -> new Game(homeTeam, awayTeam, LocalDateTime.now(), null));
+    }
+
+    @Test
+    void whenNewGameWithNullStartDateThenThrowException() {
+        assertThrows(NullPointerException.class, () -> new Game(homeTeam, awayTeam, null, new Score(1,1)));
     }
 
     @Test

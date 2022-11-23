@@ -1,25 +1,25 @@
 package scoreboard.model;
 
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.Objects;
 
-public final class Game implements Comparable<Game> {
+public final class Game {
     private final String homeTeam;
     private final String awayTeam;
     private final Score score;
     private final LocalDateTime startDateTime;
 
     public Game(String homeTeam, String awayTeam) {
-        this(homeTeam, awayTeam, new Score(0, 0));
+        this(homeTeam, awayTeam, LocalDateTime.now(), new Score(0, 0));
     }
 
-    public Game(String homeTeam, String awayTeam, Score score) {
+    public Game(String homeTeam, String awayTeam, LocalDateTime startDateTime, Score score) {
         Objects.requireNonNull(score);
+        Objects.requireNonNull(startDateTime);
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
+        this.startDateTime = startDateTime;
         this.score = score;
-        this.startDateTime = LocalDateTime.now();
     }
 
     public String getHomeTeam() {
@@ -32,6 +32,10 @@ public final class Game implements Comparable<Game> {
 
     public Score getScore() {
         return score;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
     @Override
@@ -52,12 +56,4 @@ public final class Game implements Comparable<Game> {
         return homeTeam + " " + score.getHome() + " - " + awayTeam + " " + score.getAway();
     }
 
-    @Override
-    public int compareTo(Game game) {
-        return Comparator
-                .comparing(Game::getScore)
-                .thenComparing(g -> g.startDateTime)
-                .reversed()
-                .compare(this, game);
-    }
 }

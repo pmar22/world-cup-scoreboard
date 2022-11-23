@@ -5,6 +5,7 @@ import scoreboard.model.Score;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Scoreboard {
@@ -28,7 +29,7 @@ public class Scoreboard {
         if (!ongoingGames.contains(game)) {
             throw new IllegalStateException("Game is not in progress now");
         }
-        var updatedGame = new Game(game.getHomeTeam(), game.getAwayTeam(), score);
+        var updatedGame = new Game(game.getHomeTeam(), game.getAwayTeam(), game.getStartDateTime(), score);
         ongoingGames.remove(game);
         ongoingGames.add(updatedGame);
         return updatedGame;
@@ -43,7 +44,11 @@ public class Scoreboard {
 
     public List<Game> getSummary() {
         var summary = new ArrayList<>(ongoingGames);
-        Collections.sort(summary);
+        var comparator = Comparator
+                .comparing(Game::getScore)
+                .thenComparing(Game::getStartDateTime)
+                .reversed();
+        summary.sort(comparator);
         return summary;
     }
 }

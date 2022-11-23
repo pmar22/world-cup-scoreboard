@@ -5,16 +5,17 @@ import org.junit.jupiter.api.Test;
 import scoreboard.model.Game;
 import scoreboard.model.Score;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScoreboardTest {
-    private static final Game MEXICO_GAME = new Game("Mexico", "Canada", new Score(0, 5));
-    private static final Game SPAIN_GAME = new Game("Spain", "Brazil", new Score(10, 2));
-    private static final Game GERMANY_GAME = new Game("Germany", "France", new Score(2, 2));
-    private static final Game URUGUAY_GAME = new Game("Uruguay", "Italy", new Score(6, 6));
-    private static final Game ARGENTINA_GAME = new Game("Argentina", "Australia", new Score(3, 1));
+    private static final Game MEXICO_GAME = new Game("Mexico", "Canada", LocalDateTime.now(), new Score(0, 5));
+    private static final Game SPAIN_GAME = new Game("Spain", "Brazil", LocalDateTime.now(), new Score(10, 2));
+    private static final Game GERMANY_GAME = new Game("Germany", "France", LocalDateTime.now(), new Score(2, 2));
+    private static final Game URUGUAY_GAME = new Game("Uruguay", "Italy", LocalDateTime.now(), new Score(6, 6));
+    private static final Game ARGENTINA_GAME = new Game("Argentina", "Australia", LocalDateTime.now(), new Score(3, 1));
     private static final String HOME_TEAM = "England";
     private static final String AWAY_TEAM = "Spain";
     private Scoreboard scoreboard;
@@ -46,6 +47,7 @@ class ScoreboardTest {
         assertEquals(awayTeamGoals, updatedScore.getAway());
         assertEquals(HOME_TEAM, updatedGame.getHomeTeam());
         assertEquals(AWAY_TEAM, updatedGame.getAwayTeam());
+        assertEquals(game.getStartDateTime(), updatedGame.getStartDateTime());
     }
 
     @Test

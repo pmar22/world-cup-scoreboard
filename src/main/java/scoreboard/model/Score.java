@@ -42,6 +42,6 @@ public final class Score implements Comparable<Score> {
 
     @Override
     public int compareTo(Score score) {
-        return (this.away + this.home) - (score.away + score.home);
+        return Integer.compare(this.away + this.home, score.away + score.home);
     }
 }
