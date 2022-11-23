@@ -4,6 +4,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ScoreTest {
 
@@ -16,6 +17,16 @@ class ScoreTest {
 
         assertEquals(homeTeamGoals, score.getHome());
         assertEquals(awayTeamGoals, score.getAway());
+    }
+
+    @Test
+    void whenHomeScoreBelowZeroThenThrowException() {
+        assertThrows(IllegalArgumentException.class, () -> new Score(-1, 0));
+    }
+
+    @Test
+    void whenAwayScoreBelowZeroThenThrowException() {
+        assertThrows(IllegalArgumentException.class, () -> new Score(0, -1));
     }
 
     @Test

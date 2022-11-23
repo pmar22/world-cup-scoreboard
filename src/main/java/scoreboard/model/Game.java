@@ -15,6 +15,7 @@ public final class Game implements Comparable<Game> {
     }
 
     public Game(String homeTeam, String awayTeam, Score score) {
+        Objects.requireNonNull(score);
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.score = score;

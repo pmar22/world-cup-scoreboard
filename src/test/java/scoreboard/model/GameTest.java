@@ -4,6 +4,7 @@ import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GameTest {
     private final String homeTeam = "Poland";
@@ -24,6 +25,11 @@ class GameTest {
         var score = game.getScore();
         assertEquals(0, score.getHome());
         assertEquals(0, score.getAway());
+    }
+
+    @Test
+    void whenNewGameWithNullScoreThenThrowException() {
+        assertThrows(NullPointerException.class, () -> new Game(homeTeam, awayTeam, null));
     }
 
     @Test

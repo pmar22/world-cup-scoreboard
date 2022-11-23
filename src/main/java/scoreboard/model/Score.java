@@ -7,6 +7,9 @@ public final class Score implements Comparable<Score> {
     private final int away;
 
     public Score(int home, int away) {
+        if (home < 0 || away < 0) {
+            throw new IllegalArgumentException("Score cannot be below zero. Provided home: " + home + " away: " + away);
+        }
         this.home = home;
         this.away = away;
     }
