@@ -10,8 +10,12 @@ import java.util.List;
 public class Scoreboard {
     private final List<Game> ongoingGames;
 
+    public Scoreboard(List<Game> ongoingGames) {
+        this.ongoingGames = new ArrayList<>(ongoingGames);
+    }
+
     public Scoreboard() {
-        this.ongoingGames = new ArrayList<>();
+        this(new ArrayList<>());
     }
 
     public Game startGame(String homeTeam, String awayTeam) {
@@ -38,6 +42,8 @@ public class Scoreboard {
     }
 
     public List<Game> getSummary() {
-        return Collections.unmodifiableList(ongoingGames);
+        var summary = new ArrayList<>(ongoingGames);
+        Collections.sort(summary);
+        return summary;
     }
 }

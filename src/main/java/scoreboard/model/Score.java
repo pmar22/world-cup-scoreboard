@@ -2,7 +2,7 @@ package scoreboard.model;
 
 import java.util.Objects;
 
-public final class Score {
+public final class Score implements Comparable<Score> {
     private final int home;
     private final int away;
 
@@ -30,5 +30,15 @@ public final class Score {
     @Override
     public int hashCode() {
         return Objects.hash(home, away);
+    }
+
+    @Override
+    public String toString() {
+        return "Score: " + home + " " + away;
+    }
+
+    @Override
+    public int compareTo(Score score) {
+        return (this.away + this.home) - (score.away + score.home);
     }
 }

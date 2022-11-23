@@ -2,11 +2,19 @@ package scoreboard;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import scoreboard.model.Game;
 import scoreboard.model.Score;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ScoreboardTest {
+    private static final Game MEXICO_GAME = new Game("Mexico", "Canada", new Score(0, 5));
+    private static final Game SPAIN_GAME = new Game("Spain", "Brazil", new Score(10, 2));
+    private static final Game GERMANY_GAME = new Game("Germany", "France", new Score(2, 2));
+    private static final Game URUGUAY_GAME = new Game("Uruguay", "Italy", new Score(6, 6));
+    private static final Game ARGENTINA_GAME = new Game("Argentina", "Australia", new Score(3, 1));
     private static final String HOME_TEAM = "England";
     private static final String AWAY_TEAM = "Spain";
     private Scoreboard scoreboard;
@@ -85,5 +93,22 @@ class ScoreboardTest {
         var summary = scoreboard.getSummary();
         assertEquals(1, summary.size());
         assertTrue(summary.contains(updatedGame));
+    }
+
+    @Test
+    void whenSummaryThenReturnOrderedResults() {
+        var scoreboard = new Scoreboard(getGames());
+
+        var summary = scoreboard.getSummary();
+
+        assertEquals(getExpectedSummary(), summary);
+    }
+
+    private List<Game> getGames() {
+        return List.of(MEXICO_GAME, SPAIN_GAME, GERMANY_GAME, URUGUAY_GAME, ARGENTINA_GAME);
+    }
+
+    private List<Game> getExpectedSummary() {
+        return List.of(URUGUAY_GAME, SPAIN_GAME, MEXICO_GAME, ARGENTINA_GAME, GERMANY_GAME);
     }
 }
