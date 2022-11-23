@@ -1,6 +1,8 @@
 package scoreboard.model;
 
-public class Score {
+import java.util.Objects;
+
+public final class Score {
     private final int home;
     private final int away;
 
@@ -15,5 +17,18 @@ public class Score {
 
     public int getAway() {
         return away;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Score score = (Score) o;
+        return home == score.home && away == score.away;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(home, away);
     }
 }

@@ -1,5 +1,6 @@
 package scoreboard.model;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,5 +24,10 @@ class GameTest {
         var score = game.getScore();
         assertEquals(0, score.getHome());
         assertEquals(0, score.getAway());
+    }
+
+    @Test
+    void whenEqualsThenKeepContract() {
+        EqualsVerifier.forClass(Game.class).verify();
     }
 }
